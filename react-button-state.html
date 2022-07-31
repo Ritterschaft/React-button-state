@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Fundamentals</title>
+    <!-- Load React -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App(props) {
+            return (
+                <React.Fragment>
+                    <ButtonComponent text="My Button 1"/>
+                    <ButtonComponent text="My Button 2"/>
+                </React.Fragment>
+                );
+        }
+        
+        class ButtonComponent extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {counter: 0};
+                this.handleButtonClick = this.handleButtonClick.bind(this);
+            }
+
+            render(){ // render the elements
+                return (
+                    <button onClick={this.handleButtonClick}>{this.props.text} - {this.state.counter}</button>
+                );
+            }
+
+            handleButtonClick(e) {
+                console.log('button clicked');
+                this.setState((currentState) => ({counter: currentState.counter + 1}));
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
